@@ -3,6 +3,7 @@ import questions from './questions.json';
 import { Questions } from './types';
 import { useState } from 'react';
 import Statbar from './components/StatBar';
+import QuestionComp from './components/Question';
 
 function App() {
     const allQuestions = questions as Questions;
@@ -19,6 +20,7 @@ function App() {
                 correct={correctAnswers}
                 incorrect={incorrectAnswers}
             />
+            <QuestionComp question={allQuestions.questions[currentQuestionIdx]} onSubmit={() => {}}/>
         </div>
     );
 }

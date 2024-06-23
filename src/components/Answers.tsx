@@ -22,7 +22,7 @@ const onPress = (idx: number) => {
 
             if (showAnswer && props.question.correctAnswerIdx === idx) color = 'green';
             else if (showAnswer) color = 'red'
-            return <Answer text={choice} onPress={() => onPress(idx)} color={color}/>
+            return <Answer text={choice} onPress={() => onPress(idx)} color={color} disabled={showAnswer}/>
 })}
     </div>
     );
