@@ -4,6 +4,9 @@
   background-color: #1a1a1a;
   font-family: Verdana, sans-serif;
   color: #e6e6e6;
-  border: 1px solid #5a58da;
+  border: 0px solid #5a58da;
   border-radius: 10px;
+  &:hover {
+    border: 1px solid rgb(90, 88, 218);
+  }
 }
