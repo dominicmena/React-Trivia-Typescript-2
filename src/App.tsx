@@ -4,6 +4,7 @@ import { Questions } from './types';
 import { useState } from 'react';
 import Statbar from './components/StatBar';
 import QuestionComp from './components/Question';
+import Reset from './components/reset';
 
 function App() {
     const allQuestions = questions as Questions;
@@ -12,18 +13,30 @@ function App() {
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = useState(0);
 
-    const [waitingToAdvance, setWaitingToAdvance] = useState(false)
+    const [waitingToAdvance, setWaitingToAdvance] = useState(false);
     const onSubmit = (correct: boolean) => {
-        if (correct) setCorrectAnswers(correctAnswers + 1)
-        else setIncorrectAnswers(incorrectAnswers + 1)
+        if (correct) setCorrectAnswers(correctAnswers + 1);
+        else setIncorrectAnswers(incorrectAnswers + 1);
 
-        setWaitingToAdvance(true)
-    }
+        setWaitingToAdvance(true);
+    };
 
     const advance = () => {
-        setWaitingToAdvance(false)
-        setCurrentQuestionIdx(currentQuestionIdx + 1)
+        setWaitingToAdvance(false);
+        setCurrentQuestionIdx(currentQuestionIdx + 1);
+    };
+
+    const reset = () => {
+        setCurrentQuestionIdx(0)
+        setCorrectAnswers(0)
+        setIncorrectAnswers(0)
+        setIncorrectAnswers(false)
     }
+
+    if (currentQuestionIdx >= allQuestions.questions.length)
+        return <Reset totalQuestions={allQuestions.questions.length} 
+        correctQuestions={correctAnswers}
+        onPress={reset}/>;
 
     return (
         <div className={styles.app}>
