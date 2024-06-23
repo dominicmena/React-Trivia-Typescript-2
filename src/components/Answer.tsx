@@ -1,3 +1,4 @@
+import Answer_module from './Answer.module.scss';
 type Props = {
     onPress: () => void;
     text: string;
@@ -8,7 +9,14 @@ type Props = {
 function Answer(props: Props) {
     const style = props.color ? { color: props.color } : {};
     return (
-        <button onClick={props.onPress} disabled={props.disabled} form="" name="" value="Tom">
+        <button
+            onClick={props.onPress}
+            disabled={props.disabled}
+            form=""
+            name=""
+            value="Tom"
+            className={Answer_module.answer}
+        >
             <span style={style}>{props.text}</span>
         </button>
     );
