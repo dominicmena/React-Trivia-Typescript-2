@@ -5,6 +5,8 @@ import { useState } from 'react';
 import Statbar from './components/StatBar';
 import QuestionComp from './components/Question';
 import Reset from './components/reset';
+import Answer_module from './components/Answer.module.scss';
+import Classnames from 'classnames';
 
 function App() {
     const allQuestions = questions as Questions;
@@ -27,16 +29,20 @@ function App() {
     };
 
     const reset = () => {
-        setCurrentQuestionIdx(0)
-        setCorrectAnswers(0)
-        setIncorrectAnswers(0)
-        setIncorrectAnswers(false)
-    }
+        setCurrentQuestionIdx(0);
+        setCorrectAnswers(0);
+        setIncorrectAnswers(0);
+        setWaitingToAdvance(false);
+    };
 
     if (currentQuestionIdx >= allQuestions.questions.length)
-        return <Reset totalQuestions={allQuestions.questions.length} 
-        correctQuestions={correctAnswers}
-        onPress={reset}/>;
+        return (
+            <Reset
+                totalQuestions={allQuestions.questions.length}
+                correctQuestions={correctAnswers}
+                onPress={reset}
+            />
+        );
 
     return (
         <div className={styles.app}>
@@ -50,7 +56,14 @@ function App() {
                 question={allQuestions.questions[currentQuestionIdx]}
                 onSubmit={onSubmit}
             />
-            {waitingToAdvance && <button onClick={advance}>Next Question...</button>}
+            {waitingToAdvance && (
+                <button
+                    onClick={advance}
+                    className={Classnames(Answer_module.answer, styles['next-btn'])}
+                >
+                    Next Question...
+                </button>
+            )}
         </div>
     );
 }
